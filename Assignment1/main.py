@@ -1,14 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+app=FastAPI();
+
+
 tasks=[
     {"id":1,"title":"Watch lecture","done":False},
     {"id":2,"title":"Do assignment","done":True},
     {"id":3,"title":"Wash dishes","done":True}
 ]
-
-
-app=FastAPI();
-
 class TaskModel(BaseModel):
     id: int = None
     title: str
