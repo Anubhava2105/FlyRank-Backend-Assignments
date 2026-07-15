@@ -28,3 +28,17 @@ def get_task_by_id(id:int):
     else:
         raise HTTPException(status_code=404, detail=f"Task {id} not found")
         
+@app.post("/tasks")
+
+def create_task(title:str):
+    if(title is None):
+        raise HTTPException(status_code=400,detail="Title is required")
+    max=0
+    for t in tasks:
+        if t["id"]>max:
+            max=t["id"]
+    new_task={"id":max+1,"title":title,"done":False}
+    tasks.append(new_task)
+    raise HTTPException(status_code=201,detail="Task created successfully") 
+    return new_task
+
